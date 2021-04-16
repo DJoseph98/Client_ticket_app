@@ -10,17 +10,16 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Ticket.belongsTo(models.Ticket_Activity, {foreignKey: 'id', target_key: 'ticketActivitesId'})
+      Ticket.belongsTo(models.Ticket_Levels_Priority, {foreignKey: 'id', target_key: 'ticketLvlPriorId'})
+      Ticket.belongsTo(models.Ticket_Status, {foreignKey: 'id', target_key: 'ticketStatusId'})
     }
   };
   Ticket.init({
     title: DataTypes.STRING,
-    ticketNumber: DataTypes.UUIDV4,
+    ticketNumber: DataTypes.UUID,
     email: DataTypes.STRING,
-    problemDescription: DataTypes.TEXT,
-    idTicketStatus: DataTypes.INTEGER,
-    idTicketLvl: DataTypes.INTEGER,
-    idTicketActivity: DataTypes.INTEGER
+    problemDescription: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Ticket',

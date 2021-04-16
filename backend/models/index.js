@@ -34,6 +34,8 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//sequelize.sync();
+
 const Ticket_Activity = db.sequelize.models.Ticket_Activity;
 const Ticket = db.sequelize.models.Ticket;
 const Ticket_Levels_Priority = db.sequelize.models.Ticket_Levels_Priority;

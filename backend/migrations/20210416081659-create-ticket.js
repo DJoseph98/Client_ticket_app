@@ -25,7 +25,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      idTicketStatus: {
+      ticketStatusId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {         
@@ -33,7 +33,7 @@ module.exports = {
           key: 'id'
         }
       },
-      idTicketLvl: {
+      ticketLvlPriorId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {         
@@ -41,7 +41,7 @@ module.exports = {
           key: 'id'
         }
       },
-      idTicketActivity: {
+      ticketActivitesId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {         
