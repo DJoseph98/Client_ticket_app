@@ -13,6 +13,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       ticketNumber: {
+        allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
       },
@@ -36,7 +37,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {         
-          model: 'Ticket_Level_Priorities',
+          model: 'Ticket_Levels_Priority',
           key: 'id'
         }
       },
