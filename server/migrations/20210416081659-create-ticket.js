@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Tickets', {
+    await queryInterface.createTable('Tickets_Test', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -16,6 +16,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
+        unique: true
       },
       email: {
         allowNull: false,
@@ -28,7 +29,7 @@ module.exports = {
       ticketStatusId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {         
+        references: {
           model: 'Ticket_Statuses',
           key: 'id'
         }
@@ -36,7 +37,7 @@ module.exports = {
       ticketLvlPriorId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {         
+        references: {
           model: 'Ticket_Levels_Priority',
           key: 'id'
         }
@@ -44,7 +45,7 @@ module.exports = {
       ticketActivitesId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references: {         
+        references: {
           model: 'Ticket_Activities',
           key: 'id'
         }
@@ -60,6 +61,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Tickets');
+    await queryInterface.dropTable('Tickets_Test');
   }
 };
