@@ -12,8 +12,8 @@
     "test": "cross-env NODE_ENV=test jest",
     "db:create:test": "cross-env NODE_ENV=test yarn sequelize-cli db:drop && cross-env NODE_ENV=test yarn sequelize-cli db:create",
     "db:setup:test": "cross-env NODE_ENV=test yarn sequelize-cli db:migrate && cross-env NODE_ENV=test yarn sequelize-cli db:seed:all",
-    "db:create": "yarn sequelize-cli db:create && yarn sequelize-cli db:migrate yarn sequelize-cli db:seed:all",
-    "db:reset": "yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate yarn sequelize-cli db:seed:all"
+    "db:create": "yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all",
+    "db:reset": "yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all"
   },
   "dependencies": {
     "cross-env": "^7.0.3",
