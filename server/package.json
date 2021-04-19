@@ -8,11 +8,9 @@
     "type": "git"
   },
   "scripts": {
-    "dev-server": "yarn nodemon server.js",
-    "test": "cross-env NODE_ENV=test jest",
-    "db:create:test": "cross-env NODE_ENV=test yarn sequelize-cli db:drop && cross-env NODE_ENV=test yarn sequelize-cli db:create",
-    "db:setup:test": "cross-env NODE_ENV=test yarn sequelize-cli db:migrate && cross-env NODE_ENV=test yarn sequelize-cli db:seed:all",
-    "db:create": "yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all",
+    "dev-server": "yarn nodemon app.js",
+    "pretest": "cross-env NODE_ENV=test yarn db:reset",
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "db:reset": "yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all"
   },
   "dependencies": {
