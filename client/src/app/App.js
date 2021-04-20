@@ -1,10 +1,10 @@
 import React from 'react';
-import Home from '../component/Home';
+import AppRouter from '../routers/AppRouter';
 
 function App() {
   return (
     <div>
-      <Home />
+      <AppRouter />
     </div>
   );
 }
