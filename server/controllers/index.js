@@ -13,17 +13,18 @@ const getTickets = async (req, res) => {
 
 const createTicket = async (req, res) => {
     try {
-        const openTicketActivityId = await Ticket_Activity.findOne({attributes: ['id'], where: {activity: "pending"}});
-        const openTicketStatusId = await Ticket_Status.findOne({attributes: ['id'], where: {status: "OPEN"}});
+        const openTicketActivityId = await Ticket_Activity.findOne({ attributes: ['id'], where: { activity: "pending" } });
+        const openTicketStatusId = await Ticket_Status.findOne({ attributes: ['id'], where: { status: "OPEN" } });
         const data = req.body;
-        await Ticket.create({
+        const newTicket = await Ticket.create({
             ...data,
             ticketNumber: v4(),
             ticketActivitesId: openTicketActivityId.id,
             ticketStatusId: openTicketStatusId.id
         });
-        return res.status(201).send({ response: "Ticket created" });
+        return res.status(201).send({ newTicket: newTicket });
     } catch (error) {
+        console.log(error)
         return res.status(500).send({ error: "Error creating ticket" });
     }
 };
@@ -32,16 +33,15 @@ const updateTicket = async (req, res) => {
     try {
         const ticketNumber = req.params.id;
         const data = req.body;
-        const [updated] = await Ticket.update({
-            ...data
-        },
-            {
-                where: { ticketNumber: ticketNumber }
-            });
-        if (!updated)
+        let ticket = await Ticket.findOne({ where: { ticketNumber: ticketNumber } });
+        if (!ticket)
             throw new Error('Ticket not found');
-        return res.status(200).send({ response: "Ticket udated" });
+        ticket = await ticket.update(
+            { ...data },
+            { where: { ticketNumber: ticketNumber } });
+        return res.status(200).send({ updatedTicket: ticket });
     } catch (error) {
+        console.log(error)
         return res.status(500).send({ error: "Error updating ticket" });
     }
 };
