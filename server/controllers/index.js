@@ -26,7 +26,6 @@ const createTicket = async (req, res) => {
         });
         return res.status(201).send({ newTicket: ticketValueToDisplayFromModel(newTicket) });
     } catch (error) {
-        console.log(error)
         return res.status(500).send({ error: "Error creating ticket" });
     }
 };
