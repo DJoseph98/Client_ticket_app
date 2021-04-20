@@ -8,7 +8,7 @@
     "type": "git"
   },
   "scripts": {
-    "dev-server": "yarn nodemon app.js",
+    "dev-server": "yarn nodemon server.js",
     "pretest": "cross-env NODE_ENV=test yarn db:reset",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
     "db:reset": "yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all"

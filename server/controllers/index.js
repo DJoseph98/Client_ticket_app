@@ -12,50 +12,54 @@ const getTickets = async (req, res) => {
                 }
             }
         });
-        res.status(200).send({ response: ticketsList });
+        return res.status(200).send({ response: ticketsList });
     } catch (error) {
-        res.status(500).send({ error: "error getting tickets" });
+        return res.status(500).send({ error: "error getting tickets" });
     }
 }
 
 const createTicket = async (req, res) => {
-    const data = req.body;
     try {
+        const data = req.body;
         await Ticket.create({
             ...data,
             ticketNumber: v4()
         });
-        res.status(201).send({ response: "Ticket created" });
+        return res.status(201).send({ response: "Ticket created" });
     } catch (error) {
-        res.status(500).send({ error: "Error creating ticket" });
+        return res.status(500).send({ error: "Error creating ticket" });
     }
 };
 
 const updateTicket = async (req, res) => {
-    const data = req.body.data;
-    const { id } = req.body;
     try {
-        await Ticket.update({
+        const ticketNumber = req.params.id;
+        const data = req.body;
+        const [updated] = await Ticket.update({
             ...data
         },
             {
-                where: { ticketNumber: id }
+                where: { ticketNumber: ticketNumber }
             });
-        res.status(200).send({ response: "Ticket udated" });
+        if (!updated)
+            throw new Error('Ticket not found');
+        return res.status(200).send({ response: "Ticket udated" });
     } catch (error) {
-        res.status(500).send({ error: "Error updating ticket" });
+        return res.status(500).send({ error: "Error updating ticket" });
     }
 };
 
 const deleteTicket = async (req, res) => {
-    const { id } = req.body;
     try {
-        await Ticket.destroy({
-            where: { ticketNumber: id }
+        const ticketNumber = req.params.id;
+        const deleted = await Ticket.destroy({
+            where: { ticketNumber: ticketNumber }
         });
-        res.status(204).send({ response: "Ticket deleted" })
+        if (!deleted)
+            throw new Error('Ticket not found');
+        return res.sendStatus(204);
     } catch (error) {
-        res.status(500).send({ response: "Error deleting ticket" })
+        return res.status(500).send({ error: "Error deleting ticket" })
     }
 };
 
