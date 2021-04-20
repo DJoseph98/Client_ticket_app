@@ -20,10 +20,12 @@ const getTickets = async (req, res) => {
 
 const createTicket = async (req, res) => {
     try {
+        const openTicketStatusId = await Ticket_Activity.findOne({attributes: ['id'], where: {activity: "confirmed"}});
         const data = req.body;
         await Ticket.create({
             ...data,
-            ticketNumber: v4()
+            ticketNumber: v4(),
+            ticketStatusId: openTicketStatusId.id,
         });
         return res.status(201).send({ response: "Ticket created" });
     } catch (error) {

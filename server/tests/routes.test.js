@@ -7,7 +7,6 @@ let bodyTestData = {
     title: "createTicket",
     email: "test@test",
     problemDescription: "test unit",
-    ticketStatusId: 1,
     ticketLvlPriorId: 1,
     ticketActivitesId: 1
 }
@@ -18,6 +17,7 @@ beforeAll(async () => {
     ticketNumber = v4();
     await Ticket.create({
         ...bodyTestData,
+        ticketStatusId:1,
         ticketNumber: ticketNumber
     });
 });
