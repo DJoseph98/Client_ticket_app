@@ -7,8 +7,7 @@ let bodyTestData = {
     title: "createTicket",
     email: "test@test",
     problemDescription: "test unit",
-    ticketLvlPriorId: 1,
-    ticketActivitesId: 1
+    ticketLvlPriorId: 1
 }
 
 let ticketNumber;
@@ -17,6 +16,7 @@ beforeAll(async () => {
     ticketNumber = v4();
     await Ticket.create({
         ...bodyTestData,
+        ticketActivitesId:1,
         ticketStatusId:1,
         ticketNumber: ticketNumber
     });
@@ -68,19 +68,6 @@ describe('Ticket API', () => {
                 .send({
                     ...bodyTestData
                 });
-            expect(res.statusCode).toEqual(500);
-            expect(res.body).toHaveProperty('error');
-            done();
-        }),
-        it('should remove ticket', async (done) => {
-            const res = await request(app)
-                .delete(`/api/deleteTicket/${ticketNumber}`);
-            expect(res.statusCode).toEqual(204);
-            done();
-        }),
-        it('should fail to remove ticket', async (done) => {
-            const res = await request(app)
-                .delete('/api/deleteTicket/3');
             expect(res.statusCode).toEqual(500);
             expect(res.body).toHaveProperty('error');
             done();

@@ -3,6 +3,10 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.bulkInsert('Ticket_Activities', [{
+      activity: "pending",
+      createdAt: new Date(),
+      updatedAt: new Date()
+    },{
       activity: "confirmed",
       createdAt: new Date(),
       updatedAt: new Date()

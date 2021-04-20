@@ -1,17 +1,10 @@
 
-const { Ticket_Activity, Ticket } = require('../models/index');
+const { Ticket_Activity, Ticket_Status, Ticket } = require('../models/index');
 const { v4 } = require('uuid');
 
 const getTickets = async (req, res) => {
     try {
-        const ticketsList = await Ticket.findAll({
-            include: {
-                model: Ticket_Activity,
-                where: {
-                    activity: "confirmed"
-                }
-            }
-        });
+        const ticketsList = await Ticket.findAll();
         return res.status(200).send({ response: ticketsList });
     } catch (error) {
         return res.status(500).send({ error: "error getting tickets" });
@@ -20,12 +13,14 @@ const getTickets = async (req, res) => {
 
 const createTicket = async (req, res) => {
     try {
-        const openTicketStatusId = await Ticket_Activity.findOne({attributes: ['id'], where: {activity: "confirmed"}});
+        const openTicketActivityId = await Ticket_Activity.findOne({attributes: ['id'], where: {activity: "pending"}});
+        const openTicketStatusId = await Ticket_Status.findOne({attributes: ['id'], where: {status: "OPEN"}});
         const data = req.body;
         await Ticket.create({
             ...data,
             ticketNumber: v4(),
-            ticketStatusId: openTicketStatusId.id,
+            ticketActivitesId: openTicketActivityId.id,
+            ticketStatusId: openTicketStatusId.id
         });
         return res.status(201).send({ response: "Ticket created" });
     } catch (error) {
@@ -51,18 +46,4 @@ const updateTicket = async (req, res) => {
     }
 };
 
-const deleteTicket = async (req, res) => {
-    try {
-        const ticketNumber = req.params.id;
-        const deleted = await Ticket.destroy({
-            where: { ticketNumber: ticketNumber }
-        });
-        if (!deleted)
-            throw new Error('Ticket not found');
-        return res.sendStatus(204);
-    } catch (error) {
-        return res.status(500).send({ error: "Error deleting ticket" })
-    }
-};
-
-module.exports = { getTickets, createTicket, updateTicket, deleteTicket }
+module.exports = { getTickets, createTicket, updateTicket }
