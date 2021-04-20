@@ -2,10 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './app/App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import { fetchTickets } from './actions/ticketAction';
+
+store.dispatch(fetchTickets);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
