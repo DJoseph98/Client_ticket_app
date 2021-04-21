@@ -1,50 +1,26 @@
-const ticketReducerDefaultState = {
-    data: null,
-    error: null,
-};
+const ticketReducerDefaultState = {};
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = ticketReducerDefaultState, action) => {
     switch (action.type) {
         case 'ADD_TICKET_SUCCESS':
-            return {
-                data: [
-                    ...state.data,
-                    action.ticket
-                ],
-                error: null
-            };
-        case 'ADD_TICKET_FAILED':
-            return {
-                error: action.error
-            };
+            return [
+                ...state,
+                action.ticket
+            ];
         case 'EDIT_TICKET_SUCCESS':
-            return {
-                data: state.data.map((ticket) => {
-                    if (ticket.ticketNumber === action.ticket.id) {
+            return state.map((ticket) => {
+                    if (ticket.ticketNumber === action.id) {
                         return {
-                            ...state.data,
-                            ...action.ticket.updatedTicket
+                            ...state,
+                            ...action.updatedTicket
                         }
                     } else {
-                        return ticket;
+                        return state;
                     }
-                }),
-                error: null
-            }
-        case 'EDIT_TICKET_FAILED':
-            return {
-                error: action.error
-            };
+                })
         case 'SET_TICKETS_SUCCESS':
-            return {
-                data: action.tickets,
-                error: null
-            };
-        case 'SET_TICKETS_FAILED':
-            return {
-                error: action.error
-            };
+            return action.tickets;
         default:
             return state;
     }
