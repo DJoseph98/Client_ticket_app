@@ -9,9 +9,9 @@ const getTicketListAPI = async () => {
     }
 };
 
-const createTickeAPI = async (ticket) => {
+const createTickeAPI =  async (ticket) => {
     try {
-        const { data } = await axios.post('/api/createTicket', ticket );
+        const { data } = await axios.post('/api/createTicket', ticket);
         return data;
     } catch (error) {
         return error.response.data;
