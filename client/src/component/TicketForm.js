@@ -5,8 +5,8 @@ const TicketForm = (props) => {
         title: props.ticket ? props.ticket.title : '',
         email: props.ticket ? props.ticket.email : '',
         problemDescription: props.ticket ? props.ticket.problemDescription : '',
-        ticketLvlPriorId: props.ticket ? props.ticket.ticketLvlPriorId : 1,
-        ticketStatusId: props.ticket ? props.ticket.ticketStatusId : 1,
+        ticketLvlPriorId: props.ticket ? props.ticket.Ticket_Level_Priority.id : 1,
+        ticketStatusId: props.ticket ? props.ticket.Ticket_Status.id : 1,
     })
     const setChangedState = (stateName) => {
         setFormData(formData => ({ ...formData, ...stateName }));

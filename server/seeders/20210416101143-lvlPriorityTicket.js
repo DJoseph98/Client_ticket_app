@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkInsert('Ticket_Levels_Priority', [
+    await queryInterface.bulkInsert('Ticket_Level_Priorities', [
       {
         levelPriority: "Blocker",
         createdAt: new Date(),
@@ -31,6 +31,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.bulkDelete('Ticket_Levels_Priority', null, {});
+    await queryInterface.bulkDelete('Ticket_Level_Priorities', null, {});
   }
 };

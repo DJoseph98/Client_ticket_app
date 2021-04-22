@@ -38,7 +38,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Ticket_Levels_Priority',
+          model: 'Ticket_Level_Priorities',
           key: 'id'
         }
       },

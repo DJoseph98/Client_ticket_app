@@ -1,14 +1,31 @@
 
-const { Ticket_Activity, Ticket_Status, Ticket } = require('../models/index');
+const { Ticket_Activity, Ticket_Status, Ticket, Ticket_Levels_Priority } = require('../models/index');
 const { v4 } = require('uuid');
-const attributesToDisplay = ['title', 'ticketNumber', 'email', 'problemDescription', 'ticketStatusId', 'ticketLvlPriorId', 'ticketActivitesId', 'updatedAt'];
+const attributesToDisplay = ['title', 'ticketNumber', 'email', 'problemDescription', 'updatedAt'];
 const ticketValueToDisplayFromModel = require('../utils/functions');
 
 const getTickets = async (req, res) => {
     try {
-        const ticketsList = await Ticket.findAll({ attributes: attributesToDisplay });
+        const ticketsList = await Ticket.findAll({
+            attributes: attributesToDisplay,
+            include: [
+                {
+                    model: Ticket_Activity,
+                    attributes: ['id', 'activity']
+                },
+                {
+                    model: Ticket_Status,
+                    attributes: ['id', 'status']
+                },
+                {
+                    model: Ticket_Levels_Priority,
+                    attributes: ['id', 'levelPriority']
+                }
+            ]
+        });
         return res.status(200).send({ response: ticketsList });
     } catch (error) {
+        console.log(error);
         return res.status(500).send({ error: "error getting tickets" });
     }
 }
@@ -24,7 +41,26 @@ const createTicket = async (req, res) => {
             ticketActivitesId: openTicketActivityId.id,
             ticketStatusId: openTicketStatusId.id
         });
-        return res.status(201).send({ newTicket: ticketValueToDisplayFromModel(newTicket) });
+
+        const ticketCreated = await Ticket.findOne({
+            attributes: attributesToDisplay,
+            include: [
+                {
+                    model: Ticket_Activity,
+                    attributes: ['id', 'activity']
+                },
+                {
+                    model: Ticket_Status,
+                    attributes: ['id', 'status']
+                },
+                {
+                    model: Ticket_Levels_Priority,
+                    attributes: ['id', 'levelPriority']
+                }
+            ],
+            where: { id: newTicket.id }
+        });
+        return res.status(201).send({ newTicket: ticketCreated });
     } catch (error) {
         return res.status(500).send({ error: "Error creating ticket" });
     }
@@ -40,7 +76,27 @@ const updateTicket = async (req, res) => {
         ticket = await ticket.update(
             { ...data },
             { where: { ticketNumber: ticketNumber } });
-        return res.status(200).send({ updatedTicket: ticketValueToDisplayFromModel(ticket) });
+
+        
+        const ticketUpdated = await Ticket.findOne({
+            attributes: attributesToDisplay,
+            include: [
+                {
+                    model: Ticket_Activity,
+                    attributes: ['id', 'activity']
+                },
+                {
+                    model: Ticket_Status,
+                    attributes: ['id', 'status']
+                },
+                {
+                    model: Ticket_Levels_Priority,
+                    attributes: ['id', 'levelPriority']
+                }
+            ],
+            where: { ticketNumber: ticket.ticketNumber }
+        });
+        return res.status(200).send({ updatedTicket: ticketUpdated });
     } catch (error) {
         console.log(error)
         return res.status(500).send({ error: "Error updating ticket" });

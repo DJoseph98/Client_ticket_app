@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Ticket.belongsTo(models.Ticket_Activity, {foreignKey: 'ticketActivitesId'})
-      Ticket.belongsTo(models.Ticket_Levels_Priority, {foreignKey: 'ticketLvlPriorId'})
+      Ticket.belongsTo(models.Ticket_Level_Priority, {foreignKey: 'ticketLvlPriorId'})
       Ticket.belongsTo(models.Ticket_Status, {foreignKey: 'ticketStatusId'})
     }
   };

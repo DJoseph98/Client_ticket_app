@@ -38,7 +38,7 @@ db.Sequelize = Sequelize;
 
 const Ticket_Activity = db.sequelize.models.Ticket_Activity;
 const Ticket = db.sequelize.models.Ticket;
-const Ticket_Levels_Priority = db.sequelize.models.Ticket_Levels_Priority;
+const Ticket_Levels_Priority = db.sequelize.models.Ticket_Level_Priority;
 const Ticket_Status = db.sequelize.models.Ticket_Status;
 
 module.exports = {db, Ticket_Activity, Ticket, Ticket_Levels_Priority, Ticket_Status};
