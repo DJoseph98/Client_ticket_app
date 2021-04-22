@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { updateTicket } from '../actions/ticketAction';
 import { useHistory } from "react-router-dom";
 import LoadingPage from './LoadingPage';
+import Header from './HeaderPage';
 
 const EditTicketPage = () => {
     const history = useHistory();
@@ -19,6 +20,7 @@ const EditTicketPage = () => {
     }
     return (
         <div>
+        <Header />
             Edit Page
             {ticket
                 ? <TicketForm ticket={ticket} onSubmit={onSubmit} isNew={0} />

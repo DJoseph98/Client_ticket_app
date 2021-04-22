@@ -3,6 +3,7 @@ import TicketForm from './TicketForm';
 import { useDispatch } from 'react-redux';
 import { addTicket } from '../actions/ticketAction';
 import { useHistory } from "react-router-dom";
+import Header from './HeaderPage';
 
 const AddTicketPage = () => {
     const history = useHistory();
@@ -13,6 +14,7 @@ const AddTicketPage = () => {
     }
     return (
         <div>
+        <Header />
             Add Ticket Page
             <TicketForm isNew={1} onSubmit={onSubmit} />
         </div>

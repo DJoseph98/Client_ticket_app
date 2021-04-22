@@ -1,21 +1,21 @@
 import { React } from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import ErrorPage from './ErrorPage';
 import LoadingPage from './LoadingPage';
+import { NavLink } from 'react-router-dom';
+import OpenListTicketPage from './OpenListTicketPage';
+import ToConfirmListTicketPage from './ToConfirmListTicketPage';
+import FilterListPage from './FilterListPage';
 
 const DashboardPage = () => {
-    const tickets = useSelector(state => state.tickets);
     return (
         <div>
-            <ErrorPage />
-            {tickets.length > 0 
-                ? tickets.map((ticket, key) => <p key={key}><NavLink to={`/edit/${ticket.ticketNumber}`}>{ticket.title}</NavLink></p>)
-                : <LoadingPage />
-            }
             <p>
                 <NavLink to="/create">Create Ticket</NavLink>
             </p>
+            <ErrorPage />
+            <OpenListTicketPage />
+            <FilterListPage />
+            <ToConfirmListTicketPage />
         </div>
     );
 };

@@ -1,8 +1,7 @@
 
 const { Ticket_Activity, Ticket_Status, Ticket, Ticket_Levels_Priority } = require('../models/index');
 const { v4 } = require('uuid');
-const attributesToDisplay = ['title', 'ticketNumber', 'email', 'problemDescription', 'updatedAt'];
-const ticketValueToDisplayFromModel = require('../utils/functions');
+const attributesToDisplay = ['title', 'ticketNumber', 'email', 'problemDescription', 'createdAt'];
 
 const getTickets = async (req, res) => {
     try {
@@ -70,6 +69,7 @@ const updateTicket = async (req, res) => {
     try {
         const ticketNumber = req.params.id;
         const data = req.body;
+        
         let ticket = await Ticket.findOne({ where: { ticketNumber: ticketNumber } });
         if (!ticket)
             throw new Error('Ticket not found');
@@ -77,7 +77,6 @@ const updateTicket = async (req, res) => {
             { ...data },
             { where: { ticketNumber: ticketNumber } });
 
-        
         const ticketUpdated = await Ticket.findOne({
             attributes: attributesToDisplay,
             include: [
