@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addTicket } from '../actions/ticketAction';
 import { useHistory } from "react-router-dom";
 import Header from './HeaderPage';
+import Typography from '@material-ui/core/Typography';
 
 const AddTicketPage = () => {
     const history = useHistory();
@@ -15,8 +16,8 @@ const AddTicketPage = () => {
     return (
         <div>
         <Header />
-            Add Ticket Page
-            <TicketForm isNew={1} onSubmit={onSubmit} />
+            <Typography style={{ margin: 8 }} variant='h4'>Add Ticket Page</Typography>
+            <TicketForm onSubmit={onSubmit} />
         </div>
     );
 };

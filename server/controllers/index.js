@@ -24,7 +24,6 @@ const getTickets = async (req, res) => {
         });
         return res.status(200).send({ response: ticketsList });
     } catch (error) {
-        console.log(error);
         return res.status(500).send({ error: "error getting tickets" });
     }
 }
@@ -97,7 +96,6 @@ const updateTicket = async (req, res) => {
         });
         return res.status(200).send({ updatedTicket: ticketUpdated });
     } catch (error) {
-        console.log(error)
         return res.status(500).send({ error: "Error updating ticket" });
     }
 };

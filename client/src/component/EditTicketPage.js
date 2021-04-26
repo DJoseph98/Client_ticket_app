@@ -6,6 +6,7 @@ import { updateTicket } from '../actions/ticketAction';
 import { useHistory } from "react-router-dom";
 import LoadingPage from './LoadingPage';
 import Header from './HeaderPage';
+import Typography from '@material-ui/core/Typography';
 
 const EditTicketPage = () => {
     const history = useHistory();
@@ -21,9 +22,9 @@ const EditTicketPage = () => {
     return (
         <div>
         <Header />
-            Edit Page
+        <Typography style={{ margin: 8 }} variant='h4'>Edit Page</Typography>
             {ticket
-                ? <TicketForm ticket={ticket} onSubmit={onSubmit} isNew={0} />
+                ? <TicketForm ticket={ticket} onSubmit={onSubmit}/>
                 : <LoadingPage />
             }
         </div>

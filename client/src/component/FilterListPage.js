@@ -1,6 +1,9 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { sortByDate, sortByStatus, sortByPriority } from '../actions/filterAction';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const FilterListPage = () => {
     const [sortDate, useSortDate] = useState(0);
@@ -43,9 +46,12 @@ const FilterListPage = () => {
 
     return (
         <div>
-            <button onClick={OnChangeSortDate}>Date</button>
-            <button onClick={OnChangeSortStatus}>Status</button>
-            <button onClick={OnChangeSortPriority}>Priority</button>
+        <Box display="flex" justifyContent="flex-end" flexDirection="row">
+                <Typography style={{ marginRight: 8 }}>Sorted by :</Typography>
+                <Button style={{ marginRight: 5 }} variant="contained" size="small" color="primary" onClick={OnChangeSortDate}>Date</Button>
+                <Button style={{ marginRight: 5 }} variant="contained" size="small" color="primary" onClick={OnChangeSortStatus}>Status</Button>
+                <Button variant="contained" size="small" color="primary" onClick={OnChangeSortPriority}>Priority</Button>
+           </Box>
         </div>
     );
 };
