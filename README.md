@@ -1,6 +1,6 @@
 # Service desk application
 
-Please find here the test project you asked.
+Please find here the test project asked.
 
 Technologies used:
 
