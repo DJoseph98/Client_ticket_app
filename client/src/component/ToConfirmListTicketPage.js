@@ -4,6 +4,10 @@ import ListTicketTablePage from './ListTicketTablePage';
 import LoadingPage from './LoadingPage';
 import Typography from '@material-ui/core/Typography';
 
+/* Component to render wait to confirm ticket list
+    fetch tickets with pending activity
+    Pass tickets to ListTicketTablePage component
+*/
 const ToConfirmListTicketPage = () => {
     const tickets = useSelector((state) => {
         return state.tickets.filter((ticket) => ticket.Ticket_Activity.activity === 'pending');
@@ -15,7 +19,7 @@ const ToConfirmListTicketPage = () => {
                 ? <div>
                     {tickets.length > 0
                         ? <ListTicketTablePage tickets={tickets} />
-                        : <p>No Tickets to confirm</p>}
+                        : <p>No tickets to confirm</p>}
                 </div>
                 : <LoadingPage />
             }

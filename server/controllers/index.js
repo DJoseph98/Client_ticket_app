@@ -1,8 +1,8 @@
-
 const { Ticket_Activity, Ticket_Status, Ticket, Ticket_Levels_Priority } = require('../models/index');
 const { v4 } = require('uuid');
 const attributesToDisplay = ['title', 'ticketNumber', 'email', 'problemDescription', 'createdAt'];
 
+/* Route to fetch all tickets */
 const getTickets = async (req, res) => {
     try {
         const ticketsList = await Ticket.findAll({
@@ -28,6 +28,7 @@ const getTickets = async (req, res) => {
     }
 }
 
+/* Route to create new ticket with pending and OPEN id and data from client */
 const createTicket = async (req, res) => {
     try {
         const openTicketActivityId = await Ticket_Activity.findOne({ attributes: ['id'], where: { activity: "pending" } });
@@ -64,6 +65,7 @@ const createTicket = async (req, res) => {
     }
 };
 
+/* Route to update ticket by ticket number */
 const updateTicket = async (req, res) => {
     try {
         const ticketNumber = req.params.id;

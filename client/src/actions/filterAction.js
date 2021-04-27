@@ -1,3 +1,4 @@
+/* ACtion to set filter choise to redux filter state */
 export const sortByDate = (order) => (
     {
         type: 'SORT_BY_DATE',

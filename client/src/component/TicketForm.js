@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+/* Component to render ticket form, setState with props if props passed to component, else setup empty states */
 const TicketForm = (props) => {
     const classes = useStyles();
     const [hasError, sethasError] = useState(false);
@@ -58,6 +59,7 @@ const TicketForm = (props) => {
         if (props.ticket && props.ticket.Ticket_Activity.activity === "confirmed" && formData.ticketStatusId === 1) {
             sethasError(true);
             return false;
+            /* check if email format correct, else render submit error email input */
         } else if (formData.email.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/) === null) {
             setHasErrorEmail(true);
             return false;

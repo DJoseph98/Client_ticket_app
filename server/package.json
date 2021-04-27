@@ -11,9 +11,11 @@
     "dev-server": "yarn nodemon server.js",
     "pretest": "cross-env NODE_ENV=test yarn db:reset",
     "test": "cross-env NODE_ENV=test jest --detectOpenHandles",
+    "db:migrate-all": "yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all",
     "db:reset": "yarn sequelize-cli db:drop && yarn sequelize-cli db:create && yarn sequelize-cli db:migrate && yarn sequelize-cli db:seed:all"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "helmet": "^4.5.0",

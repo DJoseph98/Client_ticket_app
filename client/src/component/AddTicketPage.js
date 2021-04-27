@@ -6,6 +6,10 @@ import { useHistory } from "react-router-dom";
 import Header from './HeaderPage';
 import Typography from '@material-ui/core/Typography';
 
+/* Component to add ticket
+    Render new form ticket with no props and override submit function to dispatch add ticket action
+    redirect to Dashboard
+*/
 const AddTicketPage = () => {
     const history = useHistory();
     const dispatch = useDispatch();

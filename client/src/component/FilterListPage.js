@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+/* Filter component to sort tickets by user choice and dispatch the filter to redux state */
 const FilterListPage = () => {
     const [sortDate, useSortDate] = useState(0);
     const [sortStatus, useSortStatus] = useState(0);

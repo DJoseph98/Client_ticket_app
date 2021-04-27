@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     },
 });
 
-
+/* Component to render table with MaterialUI */
 const ListTicketTablePage = (props) => {
     const classes = useStyles();
     return (

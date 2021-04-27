@@ -3,6 +3,8 @@ const filterReducerDefaultState = {
     sortBy: 'date'
 };
 
+/* filter reducer to set filter state to redux store from user filter choice */
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state = filterReducerDefaultState, action) => {
     switch (action.type) {

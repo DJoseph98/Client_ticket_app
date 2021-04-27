@@ -8,6 +8,10 @@ import LoadingPage from './LoadingPage';
 import Header from './HeaderPage';
 import Typography from '@material-ui/core/Typography';
 
+/* Component to edit ticket
+    Render new form ticket with ticket props find by param ID and override submit function to dispatch udapte ticket action
+    redirect to Dashboard
+*/
 const EditTicketPage = () => {
     const history = useHistory();
     const { id } = useParams();
@@ -16,7 +20,6 @@ const EditTicketPage = () => {
         return state.tickets.find((ticket) => ticket.ticketNumber === id);
     });
     const onSubmit = (newTicketData) => {
-        console.log(newTicketData)
         dispatch(updateTicket(id, newTicketData));
         history.push('/');
     }

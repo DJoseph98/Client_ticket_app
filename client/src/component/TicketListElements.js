@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+/* Second component to render table list */
 const TicketListElements = (props) => {
     const dispatch = useDispatch();
     const history = useHistory();

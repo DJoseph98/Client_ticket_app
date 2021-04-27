@@ -1,3 +1,4 @@
 const app = require('./app');
 
-app.listen(3001);
+/*  process.env.REACT_APP_SERVER_PORT is setup by docker compose*/
+app.listen(process.env.REACT_APP_SERVER_PORT);

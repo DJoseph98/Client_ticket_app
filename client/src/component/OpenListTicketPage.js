@@ -6,6 +6,10 @@ import LoadingPage from './LoadingPage';
 import FilterListPage from './FilterListPage';
 import Typography from '@material-ui/core/Typography';
 
+/* Component to render Active ticket list
+    fetch tickets with confirmed activity and !== from CLOSED status
+    Pass tickets to ListTicketTablePage component
+*/
 const OpenListTicketPage = () => {
     const tickets = useSelector((state) => {
         return ticketSort(
@@ -15,13 +19,13 @@ const OpenListTicketPage = () => {
 
     return (
         <div>
-            <Typography variant='h5'>Open tickets</Typography>
+            <Typography variant='h5'>Active tickets</Typography>
             <FilterListPage />
             {tickets
                 ? <div>
                     {tickets.length > 0
                         ? <ListTicketTablePage tickets={tickets} />
-                        : <p>No opened tickets</p>}
+                        : <p>No open tickets</p>}
                 </div>
                 : <LoadingPage />
             }
