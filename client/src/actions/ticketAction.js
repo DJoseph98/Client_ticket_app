@@ -27,7 +27,7 @@ export const updateTicket = (id, updates) => {
         if(error){
             dispatch({ type: 'SET_ERROR', error });
         }else{
-            dispatch({ type: 'EDIT_TICKET', ticket: { updatedTicket, id } });
+            dispatch({ type: 'EDIT_TICKET', ticket: { id, updatedTicket } });
         }
     }
 }

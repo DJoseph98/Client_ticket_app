@@ -36,7 +36,7 @@ describe('Ticket API', () => {
                     ...bodyTestData
                 });
             expect(res.statusCode).toEqual(201);
-            expect(res.body).toHaveProperty('response');
+            expect(res.body).toHaveProperty('newTicket');
             done();
         }),
         it('should fail to create a new ticket', async (done) => {
@@ -59,7 +59,7 @@ describe('Ticket API', () => {
                     email:"email@test"
                 });
             expect(res.statusCode).toEqual(200);
-            expect(res.body).toHaveProperty('response');
+            expect(res.body).toHaveProperty('updatedTicket');
             done();
         }),
         it('should fail to update ticket', async (done) => {

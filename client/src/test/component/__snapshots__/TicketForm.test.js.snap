@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ticket Form page should be form page with data 1`] = `ShallowWrapper {}`;
+
+exports[`Ticket Form page should be form page without data 1`] = `ShallowWrapper {}`;

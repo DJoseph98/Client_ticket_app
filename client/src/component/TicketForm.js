@@ -81,6 +81,7 @@ const TicketForm = (props) => {
                         }}
                         helperText={`${formData.title.length}/50`}
                         defaultValue={formData.title}
+                        value={formData.title}
                         placeholder="Title"
                         fullWidth
                         required />
@@ -155,7 +156,7 @@ const TicketForm = (props) => {
                 <div style={{ width: '100%' }}>
                     <Box display="flex" justifyContent="flex-end" style={{ margin: 8 }}>
                         {props.ticket
-                            ? <Button type="submit" variant="contained" size="large" color="primary">Update Ticket</Button>
+                            ? <Button id="upt" type="submit" variant="contained" size="large" color="primary">Update Ticket</Button>
                             : <Button type="submit" variant="contained" size="large" color="primary">Create Ticket</Button>
                         }
                     </Box>
