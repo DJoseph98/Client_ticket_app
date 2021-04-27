@@ -54,7 +54,8 @@ const TicketForm = (props) => {
         e.preventDefault();
         sethasError(false);
         setHasErrorEmail(false);
-        if (props.ticket && formData.ticketStatusId === 1) {
+        /* Put required select status option */
+        if (props.ticket && props.ticket.Ticket_Activity.activity === "confirmed" && formData.ticketStatusId === 1) {
             sethasError(true);
             return false;
         } else if (formData.email.match(/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/) === null) {
@@ -70,7 +71,7 @@ const TicketForm = (props) => {
             <form className={classes.root} onSubmit={handleFormSubmit}>
                 <FormControl style={{ margin: 8 }} fullWidth>
                     <TextField
-                        labelId="label_title"
+                        labelid="label_title"
                         name="title"
                         label="Title"
                         type="text"
@@ -81,7 +82,6 @@ const TicketForm = (props) => {
                         }}
                         helperText={`${formData.title.length}/50`}
                         defaultValue={formData.title}
-                        value={formData.title}
                         placeholder="Title"
                         fullWidth
                         required />
@@ -120,7 +120,7 @@ const TicketForm = (props) => {
                 <FormControl variant="outlined" fullWidth style={{ margin: 8 }}>
                     <InputLabel id="label_priority">Priority</InputLabel>
                     <Select
-                        labelId="label_priority"
+                        labelid="label_priority"
                         value={formData.ticketLvlPriorId}
                         onChange={ticketLvlPriorChange}
                         required
@@ -139,7 +139,7 @@ const TicketForm = (props) => {
                     <FormControl variant="outlined" fullWidth style={{ margin: 8 }} error={hasError}>
                         <InputLabel id="label_status">Status</InputLabel>
                         <Select
-                            labelId="label_status"
+                            labelid="label_status"
                             value={formData.ticketStatusId}
                             onChange={ticketStatusChange}
                             required
@@ -156,7 +156,7 @@ const TicketForm = (props) => {
                 <div style={{ width: '100%' }}>
                     <Box display="flex" justifyContent="flex-end" style={{ margin: 8 }}>
                         {props.ticket
-                            ? <Button id="upt" type="submit" variant="contained" size="large" color="primary">Update Ticket</Button>
+                            ? <Button type="submit" variant="contained" size="large" color="primary">Update Ticket</Button>
                             : <Button type="submit" variant="contained" size="large" color="primary">Create Ticket</Button>
                         }
                     </Box>

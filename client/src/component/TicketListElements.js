@@ -34,7 +34,7 @@ const TicketListElements = (props) => {
         dispatch(updateTicket(props.ticket.ticketNumber, { ticketActivitesId: 3 }));
     }
     return (
-        <TableRow component="th" className={classes.row} onClick={(e) => { e.preventDefault(); toTicket(props.ticket.ticketNumber) }} key={props.ticket.title}>
+        <TableRow component="tr" className={classes.row} onClick={(e) => { e.preventDefault(); toTicket(props.ticket.ticketNumber) }} key={props.ticket.title}>
             <TableCell align="center" className={classes.cell}>{props.ticket.ticketNumber}</TableCell>
             <TableCell align="center" className={classes.cell}>{props.ticket.title}</TableCell>
             <TableCell align="center" className={classes.cell}>{props.ticket.email}</TableCell>

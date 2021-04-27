@@ -16,6 +16,7 @@ const EditTicketPage = () => {
         return state.tickets.find((ticket) => ticket.ticketNumber === id);
     });
     const onSubmit = (newTicketData) => {
+        console.log(newTicketData)
         dispatch(updateTicket(id, newTicketData));
         history.push('/');
     }
