@@ -2,6 +2,8 @@
 
 Please find here the test project asked.
 
+Go to http://localhost:3000/ after run docker.
+
 Technologies used:
 
 NodeJS, Express API, MySQL, Sequelize, React, Redux, MaterialUI, Jest, Docker
