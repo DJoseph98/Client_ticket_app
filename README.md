@@ -2,7 +2,7 @@
 
 Please find here the test project asked.
 
-Go to http://localhost:3000/ after run docker.
+Go to http://localhost:3000/ after runningdocker.
 
 Technologies used:
 
