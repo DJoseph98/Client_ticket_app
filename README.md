@@ -1,12 +1,10 @@
 # Service desk application
 
-Please find here the test project asked.
+Basic service desk app asked for interview.
 
-Go to http://localhost:3000/ after running docker.
+Go to http://localhost:3000/ after running docker-compose.
 
 Technologies used:
 
 NodeJS, Express API, MySQL, Sequelize, React, Redux, MaterialUI, Jest, Docker
-
-For docker, it was the first time I had to implement it, I never use this technologie before.
 
