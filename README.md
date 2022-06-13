@@ -1,6 +1,6 @@
 # Service desk application
 
-Basic service desk app asked for interview.
+Basic service desk app asked for test task interview.
 
 Go to http://localhost:3000/ after running docker-compose.
 
